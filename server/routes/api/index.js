@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// router.use('/some_route', require('./file_route'))
+router.use('/auth', require('./auth'))
 
 module.exports = router
