@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const process = require("../../env")
+// const process = require("../../env")
 
 const url = process.env.MONGODB_URI
 

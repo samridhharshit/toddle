@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const process = require('./env')
+// const process = require('./env')
 
 const port = process.env.PORT || 5000
 
