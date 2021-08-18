@@ -4,5 +4,6 @@ const router = express.Router();
 router.use('/create', require('./create'))
 router.use('/update', require('./update'))
 router.use('/delete', require('./delete'))
+router.use('/fetch_all', require('./fetchAll'))
 
 module.exports = router

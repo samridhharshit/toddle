@@ -23,7 +23,10 @@ const updateAssignment = async (assignment_id, body, user) => {
                         body.published_at !== undefined &&
                         new Date(body.deadline) < new Date(body.published_at )
                     ) ||
-                    new Date(body.deadline) < new Date(Assignment[0].published_at)
+                    (
+                        body.published_at === undefined &&
+                        new Date(body.deadline) < new Date(Assignment[0].published_at)
+                    )
                 ) {
                     return {
                         status: 400,
