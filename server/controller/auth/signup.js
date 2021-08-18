@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
-const user = require("../../database/models/user");
 const jwt = require("jsonwebtoken");
+const user = require("../../database/models/user");
 
 const signup = async (body) => {
     // any data not provided
@@ -27,12 +27,10 @@ const signup = async (body) => {
     const tokenObj = {
         id: newUser._id,
         username: newUser['username'],
-        hash: newUser['password'],
         type: newUser['type']
     }
 
     const token = jwt.sign(tokenObj, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' })
-    delete tokenObj.hash
     // return result
     return {
         status: 200,
