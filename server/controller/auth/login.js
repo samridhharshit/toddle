@@ -20,7 +20,7 @@ const login = async (body) => {
                 type: userFound[0].type
             }
             // create new token
-            const token = jwt.sign(tokenObj, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '30s'})
+            const token = jwt.sign(tokenObj, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '5m'})
             // return token
             return {
                 status: 200,
