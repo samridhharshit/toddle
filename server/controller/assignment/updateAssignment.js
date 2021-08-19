@@ -12,7 +12,7 @@ const updateAssignment = async (assignment_id, body, user) => {
     const Assignment = await assignment.find({ _id: assignment_id })
 
     // check if assignment exists
-    if (Assignment.length === 0) return { status: 404, msg: "Assignment not found! Id must be incorrect." }
+    if (Assignment.length === 0) return { status: 404, msg: "assignment not found! Id must be incorrect." }
     else {
         // check if the assignment's t_id is equal to the current user's id.
         if (Assignment[0].t_id !== user.id) return { status: 401, msg: "Only the teacher that has created the assignment can make changes to the assignment!" }

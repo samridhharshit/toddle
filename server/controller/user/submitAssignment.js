@@ -23,7 +23,7 @@ const submitAssignment = async (body, user) => {
     } catch (e) { return { status: 400, msg: e } }
 
     // check if assignment with given id exists or not
-    if (!Assignment || Assignment.length === 0) return { status: 400, msg: "Assignment with provided id does not exist!" }
+    if (!Assignment || Assignment.length === 0) return { status: 400, msg: "assignment with provided id does not exist!" }
 
     // check if the assignment is allotted to the current student
     if (!Assignment.s_ids.includes(user.id))
