@@ -21,7 +21,16 @@ const signup = async (body) => {
         type: body.type
     }
     // save user
-    const newUser = await new user(newUserObj).save()
+    let newUser;
+    try {
+        newUser = await new user(newUserObj).save()
+    } catch (e) {
+        return {
+            status: 400,
+            msg: e
+        }
+    }
+
 
     // create jwt token
     const tokenObj = {

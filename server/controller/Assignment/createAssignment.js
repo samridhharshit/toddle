@@ -11,10 +11,18 @@ const createAssignment = async (body, user) => {
 
     // save assignment
     const assignmentObj = {...body, t_id: user.id}
-    return {
-        status: 200,
-        data: await new assignment(assignmentObj).save()
+    try {
+        return {
+            status: 200,
+            data: await new assignment(assignmentObj).save()
+        }
+    } catch (e) {
+        return {
+            status: 400,
+            msg: e
+        }
     }
+
 }
 
 module.exports = createAssignment

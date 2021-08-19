@@ -15,9 +15,18 @@ const deleteAssignment = async (assignment_id, user) => {
     else {
         // check if the assignment's t_id is equal to the current user's id.
         if (Assignment[0].t_id !== user.id) return { status: 401, msg: "Only the teacher that has created the assignment can make changes to the assignment!" }
-        else return {
-            status: 200,
-            data: await assignment.deleteOne({ _id: assignment_id })
+        else {
+            try {
+                return {
+                    status: 200,
+                    data: await assignment.deleteOne({ _id: assignment_id })
+                }
+            } catch (e) {
+                return {
+                    status: 400,
+                    msg: e
+                }
+            }
         }
     }
 }

@@ -43,10 +43,18 @@ const updateAssignment = async (assignment_id, body, user) => {
                 deadline: body.deadline !== null ? body.deadline : Assignment[0].deadline,
             }
 
-            return {
-                status: 200,
-                data: await assignment.updateOne({ _id: assignment_id }, update)
-            };
+            try {
+                return {
+                    status: 200,
+                    data: await assignment.updateOne({ _id: assignment_id }, update)
+                };
+            } catch (e) {
+                return {
+                    status: 400,
+                    msg: e
+                }
+            }
+
         }
     }
 }
