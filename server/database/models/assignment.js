@@ -7,7 +7,6 @@ const assignmentSchema = schema({
     desc: String,
     published_at: Date,
     deadline: Date,
-    status: String // SCHEDULED, ONGOING, ENDED
 })
 
 const assignment = mongoose.model("assignments", assignmentSchema)

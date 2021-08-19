@@ -10,6 +10,7 @@ const updateAssignment = async (assignment_id, body, user) => {
 
     // fetch assignment
     const Assignment = await assignment.find({ _id: assignment_id })
+
     // check if assignment exists
     if (Assignment.length === 0) return { status: 404, msg: "Assignment not found! Id must be incorrect." }
     else {
@@ -40,7 +41,6 @@ const updateAssignment = async (assignment_id, body, user) => {
                 desc: body.desc !== null ? body.desc : Assignment[0].desc,
                 published_at: body.published_at !== null ? body.published_at : Assignment[0].published_at,
                 deadline: body.deadline !== null ? body.deadline : Assignment[0].deadline,
-                status: body.published_at !== null ? new Date(body.published_at) > new Date() ? "SCHEDULED" : "ONGOING" : Assignment[0].status
             }
 
             return {
