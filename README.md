@@ -182,7 +182,7 @@ POST /api/auth/signup/
 
  ```
  {
-    "status": Number,
+    "status": 200,
     "data": {
         "s_ids": [String],
         "_id": String,
@@ -223,7 +223,7 @@ POST /api/auth/signup/
  
  ```
  {
-    "status": Number,
+    "status": 200,
     "data": {
         "s_ids": [String],
         "_id": String,
@@ -254,11 +254,22 @@ POST /api/auth/signup/
  
  #### Content
 
+ ```
+ {
+    status: 200,
+    data: "Delete Successful!"
+ }
+ ```
  --- 
 
  GET /api/user/fetch_all/
 
- - fdgfdg
+ - Both teacher and Student can make the request.
+ - Hit by a student will return the submission made by the student.
+ - Hit by the teacher will return all the assignments created by the teacher.
+ - Has two fields namely **publish** and **status**.
+ - Publish can be applied on both teacher and student.
+ - While status can be applied only on the student.
 
  #### URL params
  
@@ -266,19 +277,43 @@ POST /api/auth/signup/
  
  #### Headers
 
-`authorization: Bearer <token>`
+ `authorization: Bearer <token>`
  
  #### Data params
  
- None
+ ```
+ {
+    publish: "String", // [SCHEDULED, ONGOING]
+    status: String, // [ALL, PENDING, OVERDUE, SUBMITTED]
+ }
+ ```
  
  #### Content
+
+ - Success Response
+
+ ```
+ {
+    status: 200,
+    data: [
+             {
+                s_ids: [String], // Array of student ids that are assigned the assignment.
+                t_id: String, // teacher id 
+                _id: String,
+                desc: String,
+                published_at: Date,
+                deadline: Date
+             }
+          ]
+ }
+ ``` 
 
  --- 
-
+ 
  POST /api/user/submit/
 
- - fdgfdg
+ - Can only be made by the Student
+ - Will only be allowed to make a submission if that assignment has been assigned to the student.
 
  #### URL params
  
@@ -286,13 +321,20 @@ POST /api/auth/signup/
  
  #### Headers
 
-`authorization: Bearer <token>`
+ `authorization: Bearer <token>`
  
  #### Data params
  
- None
+ ```
+ {
+    a_id: String,
+    remark: String
+ }
+ ```
  
  #### Content
+
+
 
  --- 
  

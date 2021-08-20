@@ -46,9 +46,10 @@ const submitAssignment = async (body, user) => {
             remark: body.remark
         }
         // submission successful
+        await new submission(submitObj).save()
         return {
             status: 200,
-            data: await new submission(submitObj).save()
+            data: "Assignment Submitted!"
         }
     } catch (e) { return { status: 400, msg: e } }
 }
