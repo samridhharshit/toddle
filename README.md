@@ -54,7 +54,7 @@
 
 ---
 
-### Auth Endpoints
+### _Auth Endpoints_
 
 - Authentication library - jwt
 - password encryption library - bcrypt
@@ -151,7 +151,7 @@ POST /api/auth/signup/
 
  ---
 
- ### Restricted API Endpoints
+ ### _Restricted API Endpoints_
 
  POST /api/assignment/create/
  
@@ -267,7 +267,7 @@ POST /api/auth/signup/
  - Both teacher and Student can make the request.
  - Hit by a student will return the submission made by the student.
  - Hit by the teacher will return all the assignments created by the teacher.
- - Has two fields namely **publish** and **status**.
+ - Has two filters namely **publish** and **status**.
  - Publish can be applied on both teacher and student.
  - While status can be applied only on the student.
 
@@ -334,21 +334,28 @@ POST /api/auth/signup/
  
  #### Content
 
+ - Success Response
 
+ ```
+    status: 200,
+    data: "Assignment Submitted!"
+ ```
 
  --- 
  
  GET /api/user/fetch_assignment_details/
 
- - fdgfdg
+ - Both the student and the teacher could make this request
+ - For Student, the api will return the submission made for the respective assignment
+ - For Teacher, the api will return all the submissions made for the respective assignment
 
  #### URL params
  
- None
+ - Assignment ID
  
  #### Headers
 
-`authorization: Bearer <token>`
+ `authorization: Bearer <token>`
  
  #### Data params
  
@@ -356,5 +363,42 @@ POST /api/auth/signup/
  
  #### Content
 
+ ```
+ {
+    _id: String,
+    s_id: String,
+    a_id: String,
+    remark: String
+ }
+ ```
+
  --- 
  
+
+ ### _Data Models_
+
+
+ #### USER MODEL
+
+ ---
+
+ ![user schema](https://user-images.githubusercontent.com/39849261/130226642-a9fbf033-3412-4ce0-b6d9-1f34659cd6b8.png)
+
+ #### ASSIGNMENT MODEL
+
+ ---
+
+![assignments achema](https://user-images.githubusercontent.com/39849261/130226799-d5734a69-d672-4440-a958-b94059b2f9b4.png)
+
+ - s_ids -> Array of student Ids
+ - t_id -> teacher id
+
+ #### SUBMISSION MODEL
+
+ --- 
+
+![SUB](https://user-images.githubusercontent.com/39849261/130227059-c565b6fc-9a8e-4f0f-acd5-e31afe38323d.png)
+
+ - s_ids -> Array of student Ids
+ - a_id -> assignment id
+
